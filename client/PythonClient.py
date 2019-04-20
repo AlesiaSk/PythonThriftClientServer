@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+from tkinter import *
+
 import sys
 
 sys.path.append('../gen-py')
@@ -29,7 +31,13 @@ try:
     # Connect!
     transport.open()
     client.getConstants()
-    client.getChapter()
+
+    root = Tk()
+    root.geometry("600x300")
+    root.title("First Tkinter Window")
+    button = Button(command=client.getChapter(), text=u"Спрятать/показать")
+    button.grid()
+    root.mainloop()
 
     transport.close()
 
