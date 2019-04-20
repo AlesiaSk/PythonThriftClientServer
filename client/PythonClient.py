@@ -29,6 +29,7 @@ try:
     # Connect!
     transport.open()
     client.getConstants()
+    client.getChapter()
 
     transport.close()
 

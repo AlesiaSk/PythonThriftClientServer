@@ -1,22 +1,26 @@
 import mysql.connector
 from mysql.connector import Error
-try:
-    connection = mysql.connector.connect(host='localhost',
-                             user='root',
-                             password='password',
-                             database="aipos")
-    if connection.is_connected():
-       db_Info = connection.get_server_info()
-       print("Connected to MySQL database... MySQL Server version on ",db_Info)
-       cursor = connection.cursor()
-       cursor.execute("select * from VBScriptTutorial;")
-       record = cursor.fetchone()
-       print ("Your connected to - ", record)
-except Error as e :
-    print ("Error while connecting to MySQL", e)
-finally:
-    #closing database connection.
-    if(connection.is_connected()):
-        cursor.close()
-        connection.close()
-        print("MySQL connection is closed")
+
+class DataBase:
+    def __init__(self):
+        self.log = {}
+
+        try:
+            self.connection = mysql.connector.connect(host='localhost',
+                                                 user='root',
+                                                 password='password',
+                                                 database="aipos")
+
+            print("Connected to MySQL database... ")
+            self.cursor = self.connection.cursor()
+
+        except Error as e:
+            print("Error while connecting to MySQL", e)
+        pass
+
+    def getChapterName(self):
+        print("getChapterName()")
+        self.cursor.execute("select chapterName from VBScriptTutorial;")
+        record = self.cursor.fetchone()
+        print("Your connected to - ", record)
+
