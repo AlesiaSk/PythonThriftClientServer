@@ -5,5 +5,5 @@ struct ConstantsPart {
  
 service TutorialService {
   void getConstants()
-  void getChapter()
+  list<string> getChapter()
 }

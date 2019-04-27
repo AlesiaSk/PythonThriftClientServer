@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 from tkinter import *
-
+from client import Row
 import sys
 
 sys.path.append('../gen-py')
@@ -34,11 +34,26 @@ try:
 
     root = Tk()
     root.geometry("600x300")
-    root.title("First Tkinter Window")
-    button = Button(command=client.getChapter(), text=u"Спрятать/показать")
-    button.grid()
-    root.mainloop()
+    root.title("Thrift Client")
+    # listbox = Listbox(root)
+    # print(client.getChapter())
+    # listbox.insert(END, "")
 
+    # for item in client.getChapter():
+    #     listbox.insert(END, item)
+
+    i = 0
+    for chapter in client.getChapter():
+        link = Label(root, text=chapter, fg="blue", cursor="hand2")
+        link.bind("<Button-1>", client.getChapter())
+        link.grid(row=i, column=1, columnspan=5)
+        button = Button(command=client.getChapter(), text="Удалить")
+        button.grid(row=i, column=6)
+        buttonDelete = Button(command=client.getChapter(), text="Добавить")
+        buttonDelete.grid(row=i, column=7)
+        i += 1
+
+    root.mainloop()
     transport.close()
 
 except Thrift.TException as tx:

@@ -30,7 +30,7 @@ class ServerHandler:
         print("getConstants()")
 
     def getChapter(self):
-        self.db.getChapterName()
+        return self.db.getChapterName()
 
 
 handler = ServerHandler()

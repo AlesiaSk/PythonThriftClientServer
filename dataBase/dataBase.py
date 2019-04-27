@@ -21,6 +21,6 @@ class DataBase:
     def getChapterName(self):
         print("getChapterName()")
         self.cursor.execute("select chapterName from VBScriptTutorial;")
-        record = self.cursor.fetchone()
-        print("Your connected to - ", record)
-
+        records = list(sum(self.cursor.fetchall(), ()))
+        print(records)
+        return records
