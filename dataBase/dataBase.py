@@ -21,6 +21,17 @@ class DataBase:
     def getChapterName(self):
         print("getChapterName()")
         self.cursor.execute("select chapterName from VBScriptTutorial;")
-        record = self.cursor.fetchone()
-        print("Your connected to - ", record)
+        return list(sum(self.cursor.fetchall(), ()))
 
+    def getFullText(self, chapterName):
+        print("getFulltext()")
+        self.cursor.execute("SELECT description FROM VBScriptTutorial WHERE chapterName =  \"%s\";" % chapterName)
+        return str(self.cursor.fetchone()[0])
+
+    def deleteChapter(self, name):
+        print("delete()")
+        print("DELETE FROM VBScriptTutorial WHERE chapterName = \"%s\";" % name)
+        self.cursor.execute("DELETE FROM VBScriptTutorial WHERE chapterName = \"%s\";" % name)
+        self.connection.commit()
+        print("After")
+        self.getChapterName()

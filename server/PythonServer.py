@@ -26,11 +26,17 @@ class ServerHandler:
         self.log = {}
         self.db = DataBase()
 
-    def getConstants(self):
+    def deleteChapter(self, name):
         print("getConstants()")
+        self.db.deleteChapter(name)
+
 
     def getChapter(self):
-        self.db.getChapterName()
+        return self.db.getChapterName()
+
+    def getFullText(self, chapter):
+        print("getFullText()")
+        return self.db.getFullText(chapter)
 
 
 handler = ServerHandler()

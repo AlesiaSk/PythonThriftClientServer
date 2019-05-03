@@ -4,6 +4,8 @@ struct ConstantsPart {
 }
  
 service TutorialService {
-  void getConstants()
-  void getChapter()
+  void deleteChapter(1:string chapter)
+  void addToChapter()
+  list<string> getChapter()
+  string getFullText(1:string chapter)
 }
