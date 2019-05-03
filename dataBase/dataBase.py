@@ -21,6 +21,13 @@ class DataBase:
     def getChapterName(self):
         print("getChapterName()")
         self.cursor.execute("select chapterName from VBScriptTutorial;")
-        records = list(sum(self.cursor.fetchall(), ()))
-        print(records)
-        return records
+        return list(sum(self.cursor.fetchall(), ()))
+
+    def deleteChapter(self, name):
+        print("delete()")
+        sqlRequest = "DELETE FROM VBScriptTutorial WHERE chapterName = " + name + ";"
+        print(sqlRequest)
+        self.cursor.execute(sqlRequest)
+        self.connection.commit()
+        print("After")
+        self.getChapterName()
