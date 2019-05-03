@@ -23,11 +23,15 @@ class DataBase:
         self.cursor.execute("select chapterName from VBScriptTutorial;")
         return list(sum(self.cursor.fetchall(), ()))
 
+    def getFullText(self, chapterName):
+        print("getFulltext()")
+        self.cursor.execute("SELECT description FROM VBScriptTutorial WHERE chapterName =  \"%s\";" % chapterName)
+        return str(self.cursor.fetchone()[0])
+
     def deleteChapter(self, name):
         print("delete()")
-        sqlRequest = "DELETE FROM VBScriptTutorial WHERE chapterName = " + name + ";"
-        print(sqlRequest)
-        self.cursor.execute(sqlRequest)
+        print("DELETE FROM VBScriptTutorial WHERE chapterName = \"%s\";" % name)
+        self.cursor.execute("DELETE FROM VBScriptTutorial WHERE chapterName = \"%s\";" % name)
         self.connection.commit()
         print("After")
         self.getChapterName()

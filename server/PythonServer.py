@@ -34,6 +34,10 @@ class ServerHandler:
     def getChapter(self):
         return self.db.getChapterName()
 
+    def getFullText(self, chapter):
+        print("getFullText()")
+        return self.db.getFullText(chapter)
+
 
 handler = ServerHandler()
 processor = TutorialService.Processor(handler)
